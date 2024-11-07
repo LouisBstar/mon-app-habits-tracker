@@ -83,3 +83,5 @@ const HabitTracker = () => {
     
     const dailyHabits = Object.values(currentProfile.daily).flat();
     const weekly
+
+    <h1>Hello World</h1>
