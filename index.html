@@ -1,108 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habits Tracker</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
-    <style>
-        /* Ajoutez ici des styles si nécessaire */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div id="app" class="max-w-md mx-auto p-4 bg-white min-h-screen">
-        <h1 class="text-2xl font-bold text-center mb-4">Habits Tracker</h1>
-        <div id="habit-tracker"></div>
+<body class="max-w-md mx-auto p-4 bg-white min-h-screen">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-lg font-medium">Habit Tracker</h1>
+    <div class="flex items-center gap-2">
+      <div class="text-sm font-medium">80%</div>
+      <div class="h-2 bg-gray-300 rounded-full w-full">
+        <div class="bg-green-500 h-full rounded-full" style="width: 80%;"></div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Les données des profils
-        const profiles = {
-            "Louis": {
-                daily: {
-                    "Routines": [
-                        { id: 1, name: "Dormir à 23h30" },
-                        { id: 2, name: "Réveil à 7h30" },
-                        { id: 3, name: "Routine matinale" },
-                        { id: 4, name: "Être en avance" },
-                        { id: 5, name: "Tâche principale" },
-                        { id: 6, name: "Planifier lendemain" }
-                    ],
-                    "Santé": [
-                        { id: 7, name: "Pas d'alcool" },
-                        { id: 8, name: "Pas de cigarettes" },
-                        { id: 9, name: "Pas de CBD" }
-                    ],
-                    "Suivi": [
-                        { id: 10, name: "Tracking" }
-                    ]
-                },
-                weekly: {
-                    "Exercice": [
-                        { id: 11, name: "Run", weeklyGoal: 3 },
-                        { id: 12, name: "Salle de sport", weeklyGoal: 3 },
-                        { id: 13, name: "Se peser", weeklyGoal: 1 }
-                    ]
-                }
-            }
-        };
+  <h2 class="text-lg font-medium mb-4">Daily Habits</h2>
+  <div class="space-y-4">
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-800">Wake up at 7am</span>
+        <span class="text-sm font-medium">90%</span>
+      </div>
+      <div class="flex gap-1">
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-orange-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+      </div>
+    </div>
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-800">Exercise for 30 mins</span>
+        <span class="text-sm font-medium">75%</span>
+      </div>
+      <div class="flex gap-1">
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-orange-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+      </div>
+    </div>
+  </div>
 
-        // Fonction pour afficher les habitudes
-        function displayHabits(profile) {
-            const habitTrackerDiv = document.getElementById('habit-tracker');
-            habitTrackerDiv.innerHTML = ''; // Vider le contenu précédent
-
-            // Affichage des routines quotidiennes
-            const dailyTitle = document.createElement('h2');
-            dailyTitle.textContent = 'Daily Habits';
-            dailyTitle.className = 'text-xl font-bold mt-6 mb-2';
-            habitTrackerDiv.appendChild(dailyTitle);
-
-            Object.entries(profile.daily).forEach(([category, habits]) => {
-                const categoryTitle = document.createElement('h3');
-                categoryTitle.textContent = category;
-                categoryTitle.className = 'text-lg font-semibold mt-4';
-                habitTrackerDiv.appendChild(categoryTitle);
-
-                habits.forEach(habit => {
-                    const habitDiv = document.createElement('div');
-                    habitDiv.className = 'flex justify-between items-center my-2 p-2 border rounded';
-
-                    const habitName = document.createElement('span');
-                    habitName.textContent = habit.name;
-                    habitDiv.appendChild(habitName);
-
-                    habitTrackerDiv.appendChild(habitDiv);
-                });
-            });
-
-            // Affichage des routines hebdomadaires
-            const weeklyTitle = document.createElement('h2');
-            weeklyTitle.textContent = 'Weekly Habits';
-            weeklyTitle.className = 'text-xl font-bold mt-6 mb-2';
-            habitTrackerDiv.appendChild(weeklyTitle);
-
-            Object.entries(profile.weekly).forEach(([category, habits]) => {
-                const categoryTitle = document.createElement('h3');
-                categoryTitle.textContent = category;
-                categoryTitle.className = 'text-lg font-semibold mt-4';
-                habitTrackerDiv.appendChild(categoryTitle);
-
-                habits.forEach(habit => {
-                    const habitDiv = document.createElement('div');
-                    habitDiv.className = 'flex justify-between items-center my-2 p-2 border rounded';
-
-                    const habitName = document.createElement('span');
-                    habitName.textContent = habit.name + ` (Goal: ${habit.weeklyGoal})`;
-                    habitDiv.appendChild(habitName);
-
-                    habitTrackerDiv.appendChild(habitDiv);
-                });
-            });
-        }
-
-        // Initialisation de l'affichage pour le profil Louis
-        displayHabits(profiles["Louis"]);
-    </script>
+  <h2 class="text-lg font-medium mb-4 mt-8">Weekly Habits</h2>
+  <div class="space-y-4">
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-800">Run 3 times per week</span>
+        <span class="text-sm font-medium">80%</span>
+      </div>
+      <div class="flex gap-1">
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+      </div>
+    </div>
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-gray-800">Weigh myself 1 time per week</span>
+        <span class="text-sm font-medium">100%</span>
+      </div>
+      <div class="flex gap-1">
+        <div class="w-full h-8 bg-green-400 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg -gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+        <div class="w-full h-8 bg-gray-200 rounded-sm"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
